@@ -34,13 +34,3 @@
 
 # new_name = [name.upper() for name in names if len(name) >= 3]
 # print(new_name)
-
-
-numbers_list1 = []
-numbers_list2 = []
-with open("file1.txt", "r") as fd:
-    data = fd.readline()
-    numbers_list1.append(data)
-    pass
-
-print(numbers_list1)
