@@ -32,7 +32,7 @@ def text_to_morse(text: str):
 def morse_to_text(morse_code: str):
     text_by_morse = {code: char for char, code in MORSE_CODE_DICT.items()}
     words = morse_code.split("/")
-    # print("".join("".join(text_by_morse[code] for code in word.split()) for word in words).strip())
+    
     return " ".join(
         "".join(text_by_morse[code].lower() for code in word.split())
         for word in words
@@ -40,16 +40,17 @@ def morse_to_text(morse_code: str):
     
 
 def main():
-    print("---- Text to Morse code converter -----")
+    print("---- Text to Morse code converter And Vice versa -----")
     user_input = input("Enter the text you want to convert: ")
 
     if user_input.strip() == "":
         print("No text entered.")
         return
-    result = text_to_morse(user_input)
+    morse_code = text_to_morse(user_input)
+    # text = morse_to_text(morse_code)
+
     print(f"\nOriginal Text: {user_input}")
-    print(f"Morse Code:   {result}")
+    print(f"Morse Code:   {morse_code}\n")
 
 if __name__ == "__main__":
-    # main()
-    print(morse_to_text("...- .. ... .... .- .-.. / -.- ..- -- .- .-."))
+    main()
