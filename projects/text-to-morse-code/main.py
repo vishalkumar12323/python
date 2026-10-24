@@ -1,3 +1,4 @@
+import tkinter as tk
 
 MORSE_CODE_DICT = {
     'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 
@@ -53,4 +54,9 @@ def main():
     print(f"Morse Code:   {morse_code}\n")
 
 if __name__ == "__main__":
-    main()
+    window = tk.Tk()
+    window.title("Text To Morse Code Generator")
+    window.minsize(width=720, height=500)
+    # main()
+
+    window.mainloop()
