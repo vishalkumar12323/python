@@ -7,7 +7,7 @@ MORSE_CODE_DICT = {
     'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 
     'Z': '--..', '1': '.----', '2': '..---', '3': '...--', 
     '4': '....-', '5': '.....', '6': '-....', '7': '--...', 
-    '8': '---..', '9': '----.', '0': '-----', ', ': '--..--', 
+    '8': '---..', '9': '----.', '0': '-----', ',': '--..--', 
     '.': '.-.-.-', '?': '..--..', '/': '-..-.', '-': '-....-', 
     '(': '-.--.', ')': '-.--.-'
 }
@@ -17,9 +17,9 @@ def text_to_morse(text: str):
     morse_code = []
 
     for char in text.upper():
-        if char == '':
-            # seprate words with a forward slash
-            morse_code.append("/")
+        if char.isspace():
+            if morse_code and morse_code[-1] != "/":
+                morse_code.append("/")
         elif char in MORSE_CODE_DICT:
             # Append the morse code mapping
             morse_code.append(MORSE_CODE_DICT[char])
@@ -27,7 +27,16 @@ def text_to_morse(text: str):
             # Skip unknown chars
             continue
 
-    return ''.join(morse_code);
+    return ' '.join(morse_code)
+
+def morse_to_text(morse_code: str):
+    text_by_morse = {code: char for char, code in MORSE_CODE_DICT.items()}
+    words = morse_code.split("/")
+    # print("".join("".join(text_by_morse[code] for code in word.split()) for word in words).strip())
+    return " ".join(
+        "".join(text_by_morse[code].lower() for code in word.split())
+        for word in words
+    ).strip()
     
 
 def main():
@@ -42,4 +51,5 @@ def main():
     print(f"Morse Code:   {result}")
 
 if __name__ == "__main__":
-    main()
+    # main()
+    print(morse_to_text("...- .. ... .... .- .-.. / -.- ..- -- .- .-."))
