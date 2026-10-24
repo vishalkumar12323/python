@@ -23,7 +23,9 @@ def init():
             data_dict = {
                 "missing_state": missing_states
             }
-            pd.DataFrame(data_dict).to_csv("./result.csv")
+            pd.DataFrame(data_dict).to_csv("./missing_state.csv")
+
+            pd.DataFrame(guessed_state).to_csv("./guessed_state.csv")
             break
         if user_ans in states:
             guessed_state.append(user_ans)
