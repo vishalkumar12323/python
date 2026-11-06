@@ -1,7 +1,7 @@
 [project]
 name = "data-api"
 version = "0.1.0"
-description = "Add your description here"
+description = "Data_api is a simple testing api project build with FastAPI!"
 readme = "README.md"
 authors = [
     { name = "Vishal Kumar", email = "vishalninaniya8949info@gmail.com" }
