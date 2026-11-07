@@ -1,13 +1,11 @@
 from fastapi import FastAPI
 
-app = FastAPI(title="Simple API")
+app = FastAPI(
+    title="API",
+    description="A simple web API built with FastAPI",
+    version="0.0.1"
+)
 
-
-@app.get("/")
-def read_root() -> dict[str, str]:
-    return {"message": "Hello, World!"}
-
-
-@app.get("/health")
-def health_check() -> dict[str, str]:
-    return {"status": "ok"}
+app.get("/healthz")
+def check_health():
+    return {"status": "ok", "message": "API status is healthy 🌐"}
