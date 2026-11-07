@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from api.v1.route import v1_routes
 
 app = FastAPI(
     title="API",
@@ -6,6 +7,8 @@ app = FastAPI(
     version="0.0.1"
 )
 
-app.get("/healthz")
-def check_health():
+app.include_router(router=v1_routes, prefix="/api")
+
+@app.get("/healthz")
+def check_health() -> dict:
     return {"status": "ok", "message": "API status is healthy 🌐"}
