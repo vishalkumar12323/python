@@ -1,10 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
+from config.database import db
+from schema.schema import CommentGetResponse
 
 v1_routes = APIRouter(prefix="/v1", tags=["API v1 routes"])
 
-@v1_routes.get("/comments", name="Get all comments")
+@v1_routes.get("/comments", name="Get all comments", response_model=CommentGetResponse)
 def get_comments():
-    pass
+    return Response(content=CommentGetResponse(comments=db).model_dump_json(), status_code=200)
 
 @v1_routes.get("/comment/{comment_id}", name="Get comment by id")
 def get_comment(comment_id: str):
