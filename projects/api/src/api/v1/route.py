@@ -1,16 +1,20 @@
-from fastapi import APIRouter, Response
+from fastapi import APIRouter
 from config.database import db
-from schema.schema import CommentGetResponse
+from schema.schema import Comment
 
 v1_routes = APIRouter(prefix="/v1", tags=["API v1 routes"])
 
-@v1_routes.get("/comments", name="Get all comments", response_model=CommentGetResponse)
+@v1_routes.get("/comments", name="Get all comments")
 def get_comments():
-    return Response(content=CommentGetResponse(comments=db).model_dump_json(), status_code=200)
+    return db
 
 @v1_routes.get("/comment/{comment_id}", name="Get comment by id")
 def get_comment(comment_id: str):
-    pass
+    for i in range(len(db)):
+        if str(db[i].id) == str(comment_id):
+            return db[i]
+
+    return {"message": f"Comment not found with this id: {comment_id}", "err": None}
 
 @v1_routes.post("/create-comment", name="Create a new comment")
 def create_comment(comment: dict):
