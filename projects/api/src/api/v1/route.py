@@ -17,13 +17,24 @@ def get_comment(comment_id: str):
     return {"message": f"Comment not found with this id: {comment_id}", "err": None}
 
 @v1_routes.post("/create-comment", name="Create a new comment")
-def create_comment(comment: dict):
-    pass
+def create_comment(comment: Comment):
+    db.append(comment)
+    return db
 
-@v1_routes.patch("/update-comment/{comment_id}", name="Update comment by id")
-def update_comment(comment_id: str):
-    pass
+@v1_routes.put("/update-comment/{comment_id}", name="Update comment by id")
+def update_comment(comment_id: str, cmt: Comment):
+    comment_idx = -1
+    for i in range(len(db)):
+        if str(db[i]) == str(comment_id):
+            comment_idx = 1
+
+    if comment_idx == -1:
+        return {"message": f"Comment not found with this id: {comment_id}", "err": None}
+    comment = db[comment_idx]
+    comment.comment = cmt.comment
+    return comment
 
 @v1_routes.delete("/delete-comment/{comment_id}", name="Delete comment by id")
 def delete_comment(comment_id: str):
+
     pass
