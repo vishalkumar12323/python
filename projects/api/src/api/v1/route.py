@@ -23,7 +23,7 @@ def create_comment(comment: Comment):
 
 def find_comment(comment_id: str) -> int:
     for i in range(len(db)):
-        if str(db[i]) == comment_id:
+        if str(db[i].id) == comment_id:
             return i
     return -1
 
