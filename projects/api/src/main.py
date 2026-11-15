@@ -1,10 +1,12 @@
 from fastapi import FastAPI
 from api.v1.route import v1_routes
+from config.database import lifespan
 
 app = FastAPI(
     title="API",
     description="A simple web API built with FastAPI",
-    version="0.0.1"
+    version="1.0.0",
+    lifespan=lifespan,
 )
 
 app.include_router(router=v1_routes, prefix="/api")
