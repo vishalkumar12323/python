@@ -9,6 +9,6 @@ app = FastAPI(
 
 app.include_router(router=v1_routes, prefix="/api")
 
-@app.get("/healthz")
+@app.get("/api/healthz")
 def check_health() -> dict:
     return {"status": "ok", "message": "API status is healthy 🌐"}
