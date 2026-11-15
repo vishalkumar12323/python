@@ -1,0 +1,94 @@
+{
+  "info": {
+    "name": "API v1",
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000/api/v1", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "🏥 Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": { "method": "GET", "url": "{{base_url}}/healthz" }
+        }
+      ]
+    },
+    {
+      "name": "📑 Comments",
+      "item": [
+        {
+          "name": "List Comments",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/comments" }
+          }
+        },
+        {
+          "name": "Get Comment By ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/comment/:comment_id" }
+          }
+        },
+        {
+          "name": "Create Comment",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/create-comment",
+            "body": { "mode": "raw", "raw": "{\n  \"id\": \"string\",\n  \"comment\": \"Your comment\"}" }
+          }
+        },
+        {
+          "name": "Update Comment",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/update-comment/:comment_id",
+            "body": { "mode": "raw", "raw": "{\n  \"id\": \"some-string-value\",\n  \"comment\": \"Your comment\"}" }
+          }
+        },
+        {
+          "name": "Delete Comment",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/delete-comment/:comment_id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "👑 Admin",
+      "item": [
+        {
+          "name": "List All Users",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/admin/users",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Promote User to Admin",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/admin/users/:id/role",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{ \"role\": \"ADMIN\" }" }
+          }
+        },
+        {
+          "name": "Demote Admin to User",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/admin/users/:id/role",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{ \"role\": \"USER\" }" }
+          }
+        }
+      ]
+    }
+  ]
+}
