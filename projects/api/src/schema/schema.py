@@ -1,10 +1,11 @@
-from pydantic import BaseModel, Field, ConfigDict
-# from uuid import UUID, uuid4
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional
+
 
 class Base(BaseModel):
     message: Optional[str] = None
     err: Optional[str] = None
+
 
 class Comment(Base):
     id: str
@@ -12,5 +13,14 @@ class Comment(Base):
 
     model_config = ConfigDict(from_attributes=True)
 
-class CommentGetResponse():
+
+class CommentCreate(BaseModel):
+    comment: str = Field(min_length=1, max_length=10_000)
+
+
+class CommentUpdate(BaseModel):
+    comment: str = Field(min_length=1, max_length=10_000)
+
+
+class CommentGetResponse(Base):
     comments: list[Comment]
