@@ -39,7 +39,7 @@
           "request": {
             "method": "POST",
             "url": "{{base_url}}/create-comment",
-            "body": { "mode": "raw", "raw": "{\n  \"id\": \"string\",\n  \"comment\": \"Your comment\"}" }
+            "body": { "mode": "raw", "raw": "{\n  \"comment\": \"Your comment\"}" }
           }
         },
         {
@@ -47,7 +47,7 @@
           "request": {
             "method": "PUT",
             "url": "{{base_url}}/update-comment/:comment_id",
-            "body": { "mode": "raw", "raw": "{\n  \"id\": \"some-string-value\",\n  \"comment\": \"Your comment\"}" }
+            "body": { "mode": "raw", "raw": "{\n  \"comment\": \"Your comment\"}" }
           }
         },
         {
