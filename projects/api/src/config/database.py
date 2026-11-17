@@ -7,6 +7,7 @@ from pymongo import AsyncMongoClient
 from pymongo.asynchronous.collection import AsyncCollection
 
 from config.settings import settings
+from schema.schema import Comment
 
 COMMENTS_COLLECTION = "comments"
 
@@ -32,3 +33,5 @@ def get_comments_collection(
     request: Request,
 ) -> AsyncCollection[dict[str, Any]]:
     return request.app.state.comments_collection
+
+db: list[Comment] = [Comment(id="slkjdf234", comment="hello-world!")]
