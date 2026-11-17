@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from api.v2.route import v2_routes
 from api.v1.route import v1_routes
+from api.v2.route import v2_routes
 from config.database import lifespan
 
 app = FastAPI(
