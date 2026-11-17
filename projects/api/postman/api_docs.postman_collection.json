@@ -1,11 +1,12 @@
 {
   "info": {
-    "name": "API v1",
+    "name": "API",
     "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "base_url", "value": "http://localhost:8000/api/v1", "type": "string" }
+    { "key": "stateless_url", "value": "http://localhost:8000/api/v1", "type": "string" },
+    {"key": "statefull_url", "value": "http://localhost:8000/api/v2", "type": "string"}
   ],
   "item": [
     {
