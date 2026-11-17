@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.v1.route import v1_routes
+from api.v2.route import v2_routes
 from config.database import lifespan
 
 app = FastAPI(
@@ -9,7 +9,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-app.include_router(router=v1_routes, prefix="/api")
+app.include_router(router=v2_routes, prefix="/api")
 
 @app.get("/api/healthz")
 def check_health() -> dict:

@@ -10,7 +10,7 @@ from pymongo.asynchronous.collection import AsyncCollection
 from config.database import get_comments_collection
 from schema.schema import Comment, CommentCreate, CommentUpdate
 
-v1_routes = APIRouter(prefix="/v1", tags=["API v1 routes"])
+v2_routes = APIRouter(prefix="/v2", tags=["API v2 routes"])
 
 
 def _serialize_comment(document: Mapping[str, Any]) -> Comment:
@@ -26,7 +26,7 @@ def _comment_id(comment_id: str) -> ObjectId:
     return ObjectId(comment_id)
 
 
-@v1_routes.get("/comments", name="Get all comments", response_model=list[Comment])
+@v2_routes.get("/comments", name="Get all comments", response_model=list[Comment])
 async def get_comments(
     collection: Annotated[
         AsyncCollection[dict[str, Any]], Depends(get_comments_collection)
@@ -44,7 +44,7 @@ async def get_comments(
     return [_serialize_comment(document) for document in documents]
 
 
-@v1_routes.get(
+@v2_routes.get(
     "/comment/{comment_id}", name="Get comment by id", response_model=Comment
 )
 async def get_comment(
@@ -62,7 +62,7 @@ async def get_comment(
     return _serialize_comment(document)
 
 
-@v1_routes.post(
+@v2_routes.post(
     "/create-comment",
     name="Create a new comment",
     response_model=Comment,
@@ -80,7 +80,7 @@ async def create_comment(
     return _serialize_comment(document)
 
 
-@v1_routes.put(
+@v2_routes.put(
     "/update-comment/{comment_id}", name="Update comment by id", response_model=Comment
 )
 async def update_comment(
@@ -103,7 +103,7 @@ async def update_comment(
     return _serialize_comment(document)
 
 
-@v1_routes.delete(
+@v2_routes.delete(
     "/delete-comment/{comment_id}", name="Delete comment by id", response_model=Comment
 )
 async def delete_comment(
